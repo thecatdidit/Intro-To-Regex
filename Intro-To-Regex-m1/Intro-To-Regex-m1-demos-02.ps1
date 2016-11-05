@@ -27,17 +27,3 @@ $Matches[0]
 $Matches[0] -replace ',dc=','.'
 
 #endregion
-
-#region Basics_of_text_matching
-
-#Matching Administrator
-'Administrator' -match 'Administrator'
-
-'Administrator' -match 'Administrators'
-
-#Matching Administrators
-'Administrators' -match 'Administrator'
-
-'Administrators' -match 'Administrators'
-
-#endregion
