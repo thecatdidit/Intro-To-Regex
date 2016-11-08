@@ -1,14 +1,14 @@
 #region wildcards
 
 #Search for all .txt files
-cd C:\regex\chapter1
+cd C:\Intro-To-Regex\Intro-To-Regex-m1\wildcards
 
 Get-ChildItem *.txt
 
 #Search for text within a filename
-cd C:\regex\introduction-to-regex\introduction-to-regex-m1
+cd C:\Intro-To-Regex\Intro-To-Regex-m1
 
-Get-ChildItem *demos* -Recurse
+Get-ChildItem *demos*
 
 #Search for cmdlets
 Get-Command *et-*net*
@@ -19,7 +19,6 @@ Get-Service *net*
 Get-Service | Where-Object Name -Like *net*
 
 Get-Service *net* | Where-Object Status -Like *s*
-
 #Searching Active Directory
 Get-ADUser -Filter {name -like '*green*'}
 
