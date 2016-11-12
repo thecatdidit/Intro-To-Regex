@@ -2,17 +2,13 @@
 
 #Simple character class example
 
-'gray' -match 'gray'
-
-'grey' -match 'gray'
-
 'gray','grey' -match 'gr[ae]y'
 
 'gray grey' -match 'gr[ae]y'
 
 #Using select string to find multiple matches
 
-'gray & grey' | Select-String 'gr[ae]y' -all | % Matches
+'gray & grey' | Select-String -Pattern 'gr[ae]y' -all | % Matches
 
 #Character classes to find AD cmdlets
 
@@ -25,6 +21,9 @@ Get-Command -Module ActiveDirectory | Where-Object Name -Match '[GS]et-'
 (gcm -Module ActiveDirectory | Where-Object Name -Match 'Get-').count + `
 (gcm -Module ActiveDirectory | Where-Object Name -Match 'Set-').count -eq `
 (gcm -Module ActiveDirectory | Where-Object Name -Match '[GS]et-').count
+
+#Replace Invalid Characters in Username
+'Eliz[abeth Walker!' -replace  '[][!/\\;|=+<>]',''
 
 #Character class to validate IP Address
 
