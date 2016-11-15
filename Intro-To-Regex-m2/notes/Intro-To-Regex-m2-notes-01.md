@@ -7,7 +7,9 @@ the third character position. When you put it in those terms, it makes it easy t
 question is of course a character class. As you see on line 5, starting at the third character position
 is the opening square bracket followed by the two character I'm allow a and e then a closing square bracket.
 
-As I execute line 5, pay special attention to the output. Did you notice it didn't return a true or false?
+As I execute line 5, pay special attention to the output. 
+
+Did you notice it didn't return a true or false?
 It simply returned the matched results to the console. If I take a look inside the $matches variable, it
 isn't populated either. How strange.... The reason for all this is that I passed two different strings
 to the -match operator. When you do this it simply runs the expression against the string and outputs
@@ -35,7 +37,9 @@ comes in handy when dealing with a large blob of text and you want to parse it. 
 at using regular expression to discovery active directory cmdlets.
 
 Lines 15 and 17 are using get-command and where-object to find all the get and set cmdlets within the active
-directory module. Line 19 combines that search by using a character class. Since Get and Set both end in et
+directory module. 
+
+Line 19 combines that search by using a character class. Since Get and Set both end in et
 all you need to do is use a character class to handle the first character which can be either an e or a s.
 
 When I run line 19 I'll get all the get and set cmdlets from the active directory module, but to confirm it
