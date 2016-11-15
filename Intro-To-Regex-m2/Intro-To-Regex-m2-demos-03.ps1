@@ -14,8 +14,8 @@
 
 #Spliting  Usernames
 
-('ewalker@globomantics.com' -split '[^a-z]')
+('ewalker@globomantics.com' -split '@').split('.')
 
-('ewalker@globomantics.com' -split '[^a-z]')[0]
+'ewalker@globomantics.com' -split '[^a-z]'
 
 #endregion
