@@ -26,7 +26,7 @@ foreach ($User in $Users){
 #Longer non-regex method
 
 Get-EventLog -InstanceId 4720,4726 -LogName Security | Where `
-{$_.message -match 'mhall' -or $_.message -match 'alewis'}
+{$_.message -like '*mhall*' -or $_.message -like '*alewis*'}
 
 #Simplifying with regex alternation
 
