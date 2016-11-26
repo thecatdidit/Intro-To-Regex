@@ -11,7 +11,9 @@ $wordCharacterTest = 'a','b',' ',1,'$'
 
 $wordCharacterTest -match '\w'
 
-Get-ADUser -Filter * | Where-Object Name -Match '\wbailey'
+#Finding Active Directory Users
+
+Get-ADUser -Filter * | Where-Object Name -Match '\w\w\w\waccount'
 
 #Matching digits with \d
 

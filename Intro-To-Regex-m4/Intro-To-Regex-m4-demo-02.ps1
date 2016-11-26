@@ -1,12 +1,11 @@
 #Splitting on whitespaces
 
 $text = "This text  contains
-
-whitespaces  and  a newline"
+whitespaces  and  a newline."
 
 #Results in extra whitespaces
 
-$text.Split()
+$text.Split(' ')
 
 #split after 1 or two whitespaces characters
 
