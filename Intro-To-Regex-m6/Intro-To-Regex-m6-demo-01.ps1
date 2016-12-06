@@ -41,7 +41,7 @@ select IdentityReference,@{n='Path';e={($PSItem.PSPath -replace '\w+\.\w+\.\w+\\
 #endregion
 
 #region finding_server_names
-$xml = (Get-Content C:\Intro-To-Regex\Intro-To-Regex-m6\web.config.xml)
+$xml = Get-Content C:\Intro-To-Regex\Intro-To-Regex-m6\web.config.xml
 
 $xml.GetType()
 
