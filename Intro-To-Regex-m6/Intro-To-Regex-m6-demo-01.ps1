@@ -20,8 +20,9 @@
 
 #Setup sales directories
 New-SalesShare -Path 'C:\'
+Set-Location -Path 'C:\Share'
 
-tree
+Get-ChildItem -Recurse | select fullname
 
 #Wildcards match to many groups
 
@@ -40,11 +41,12 @@ select IdentityReference,@{n='Path';e={($PSItem.PSPath -replace '\w+\.\w+\.\w+\\
 #endregion
 
 #region finding_server_names
-$xml = Get-Content C:\Intro-To-Regex
+$xml = (Get-Content C:\Intro-To-Regex\Intro-To-Regex-m6\web.config.xml)
 
-$xml | Select-String -Pattern 'Customers' -AllMatches | % matches
+$xml.GetType()
 
-$xml | Select-String -Pattern '\bCustomers\b' -AllMatches | % matches
+$xml -match 'customers'
 
+$xml -match '\bcustomers\b'
 
 #endregion
