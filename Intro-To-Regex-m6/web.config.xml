@@ -63,8 +63,9 @@
     </providers>
   </entityFramework>
 </configuration>
-
-
 <connectionStrings>
-<add name="myConnectionString" connectionString="server=localhost;database=myDb;uid=myUser;password=myPass;" />
+<add name="Customer" connectionString="server=GWeb01;database=Customers;uid=myUser;password=myPass;" />
+</connectionStrings>
+<connectionStrings>
+<add name="CustomerAddress" connectionString="server=GWeb10;database=CustomersAddresses;uid=myUser;password=myPass;" />
 </connectionStrings>
