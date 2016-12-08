@@ -2,11 +2,11 @@
 
 #Start of line anchor
 
-'cat scatty scatter' | Select-String -Pattern '^cat' -all | % matches | % value
+'cat scatty cat scatter' | Select-String -Pattern '^cat' -all | % matches | % value
 
 #End of line anchor
 
-'scatty scatter cat' | Select-String -Pattern 'cat$' -all | % matches | % value
+'cat scatty scatter cat' | Select-String -Pattern 'cat$' -all | % matches | % value
 
 #Word Boundary
 
