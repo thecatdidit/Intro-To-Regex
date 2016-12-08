@@ -10,8 +10,6 @@
 
 #Word Boundary
 
-'scatty cat scatter' | Select-String -Pattern '\bcat\b' -all | % matches | % value
-
 'cat scatty cat scatter cat' | Select-String -Pattern '\bcat\b' -all | % matches | % value
 
 #endregion
