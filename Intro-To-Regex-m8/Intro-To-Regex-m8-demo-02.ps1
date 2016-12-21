@@ -12,9 +12,11 @@
 
 #convert DistinguishedName to domain name
 
-'CN=bbailey,CN=Users,DC=globomantics,DC=com' -replace "(?:.*)?DC=(.*),DC=(com|net)",'$1.$2'
+$DistinguishedName = (Get-ADUser -Identity ssmith).DistinguishedName
 
-(($member.DistinguishedName -replace "(.*?)DC=(.*)",'$2') -replace "DC=","") -replace ",","."
+(($DistinguishedName -replace "(.*?)DC=(.*)",'$2') -replace "DC=","") -replace ",","."
+
+$DistinguishedName -replace "(?:.*)?DC=(.*),DC=(com|net)",'$1.$2'
 
 #endregion
 

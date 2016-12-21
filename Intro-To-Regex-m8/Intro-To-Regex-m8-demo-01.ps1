@@ -2,18 +2,18 @@
 
 #single subexpression
 
-'123 456' -match '123\s(456)'
+'202-555-0148' -match '(202)-555-0148'
 
 #double subexpression
 
-'123 456' -match '(123)\s(456)'
+'202-555-0148' –match '(\d+-)(\d+-\d+)'
 
 #non-capturing subexpression
 
-'123 456' -match '(?:\d+)\s(\d+)'
+'202-555-0148' –replace '(?:\d{3}-)+(\d{4})','$1'
 
 #repeating subexpressions
 
-'123 456' | Select-String -Pattern '(\d+)+' -All | % Matches
+'202-555-0148' | Select-String -Pattern '(\d+)+' -All | % matches
 
 #endregion
