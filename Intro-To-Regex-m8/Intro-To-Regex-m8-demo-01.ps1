@@ -6,11 +6,11 @@
 
 #double subexpression
 
-'202-555-0148' –match '(\d+-)(\d+-\d+)'
+'202-555-0148' -match '(\d+)-(\d+-\d+)'
 
 #non-capturing subexpression
 
-'202-555-0148' –replace '(?:\d{3}-)+(\d{4})','$1'
+'202-555-0148' -replace '(?:\d{3}-)+(\d{4})','$1'
 
 #repeating subexpressions
 
