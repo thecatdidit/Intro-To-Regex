@@ -8,7 +8,7 @@
 
 #capture user name and replace string with capture
 
-'CN=Administrator,CN=Users,DC=wef,DC=com' -replace 'CN=(\w+).*','$1'
+'CN=Administrator,CN=Users,DC=globomantics,DC=com' -replace 'CN=(\w+).*','$1'
 
 #convert DistinguishedName to domain name
 
