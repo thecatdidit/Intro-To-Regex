@@ -6,15 +6,15 @@
 
 #region extracting_ActiveDirectory_data
 
-#capture user name and replace string with capture
+#capture user name and replace with capture
 
 'CN=Administrator,CN=Users,DC=globomantics,DC=com' -replace 'CN=(\w+).*','$1'
 
-#convert DistinguishedName to domain name
+#populate variable
 
 $DistinguishedName = (Get-ADUser -Identity ssmith).DistinguishedName
 
-(($DistinguishedName -replace "(.*?)DC=(.*)",'$2') -replace "DC=","") -replace ",","."
+#convert DistinguishedName to domain name
 
 $DistinguishedName -replace "(?:.*)?DC=(.*),DC=(com|net)",'$1.$2'
 
