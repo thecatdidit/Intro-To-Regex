@@ -1,36 +1,35 @@
-$string = 'abc
-123' | Out-String
-
-$text = @"
-abc
-123
-"@
-
-[regex]$rx='(?m)^(?<word>[a-z]+)$'
-[regex]$rx='(?m)^(?<word>[a-z]+$) ^(?<num>[0-9]+$)'
-
-
-$services = Get-Content .\services.txt
-[regex]$rx='(?m)^(?:(?<Status>Stopped|Running)$) ^(?<name>[a-z0-9]+)$'
-$rx.Matches($services)
-
-
-#named and numbered captures not recommended
-
-'aaa 123 bbb 456' -match "(?<word>\w{3}) (?<num>\d{3})"
-[regex]$rx="(?<word>\w{3}) (?<num>\d{3})"
-$m = $rx.Match('aaa 123 bbb 456')
-$rx.GetGroupNames()
+#region Named_Caputres_In_Action
 
 #phone nubmer
-'202-555-0148' -match '(?<AreaCode>\d{3})-(?<PhoneNumber>\d{3}-\d{4})'
 
-#user and domain name
-'CN=Administrator,CN=Users,DC=globomantics,DC=com' -match 'CN=(?<UserName>)\w+)'
+'202-555-0148' -match '(?x) (?<AreaCode>\d{3}) - (?<PhoneNumber>\d{3}-\d{4})'
+
+#x modifer to add comments to regex and multi line expression (ignore whitespaces)
+
+$regex = '(?xn) #modifer
+          (Address:\s)
+          (?<ServerName>\w+) #1st named capture
+          \.
+          (?<Domain>\w+.com) #2nd named capture'
+
+$eventSub = (cmd /c wecutil gs appevents | Out-String)
+
+$eventSub -match $regex
+
+#creating object from named captures
+
+[regex]$regexObj = $regex
+
+$keys = $regexObj.GetGroupNames() | Where-Object {$_ -match '(?i)[a-z]{2,}'}
+
+$regexObj.Matches($eventSub) | % {
+    $match = $_
+    $keys | % -Begin {$hash=[ordered]@{}} -Process {
+        $hash.add($_,$match.groups["$_"].value)
+    } -End { [PSCustomObject]$hash}
+}
 
 
-$DistinguishedName -replace "(?:.*)?DC=(.*),DC=(com|net)",'$1.$2'
+#capture event log message Use [regex]
 
-#capture event log message
-
-#event forwarding log collection (multi line)
+#endregion

@@ -1,8 +1,12 @@
-#region Named_Captures
+#region Named_Captures_Intro
 
 'abcd 1234' -match '(?<word>\w+) (?<num>\d+)'
 
-'Stopped BITS' -match '(?:(?<Status>Stopped|Running)) (?<Name>[a-z0-9]+)'
+$share = '\\GDC01\NETLOGON'
+
+$regex = '^\\\\(?<ServerName>[a-z0-9]+)\\(?<ShareName>\w+)'
+
+$share -match $regex
 
 #endregion
 
@@ -10,7 +14,7 @@
 
 $string = 'abcd 1234 efg 567'
 
-[regex]$regex = '(?<word>\w+) (?<num>\d+)'
+[regex]$regex = '(?<word>[a-z]+) (?<num>[0-9]+)'
 
 $regex.Match($string)
 
