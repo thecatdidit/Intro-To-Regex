@@ -1,12 +1,12 @@
-#region Named_Caputres_In_Action
-
-#phone nubmer
+#region PhoneNumber
 
 '202-555-0148' -match '(?x) (?<AreaCode>\d{3}) - (?<PhoneNumber>\d{3}-\d{4})'
 
-#x modifer to add comments to regex and multi line expression (ignore whitespaces)
+#endregion
 
-$regex = '(?xn) #modifer
+#region Windows_Event_Forwarding
+
+$regex = '(?xn) #modifers
           (Address:\s)
           (?<ServerName>\w+) #1st named capture
           \.
@@ -16,7 +16,9 @@ $eventSub = (cmd /c wecutil gs appevents | Out-String)
 
 $eventSub -match $regex
 
-#creating object from named captures
+#endregion
+
+#region Create_Objects_from_Named_Captures
 
 [regex]$regexObj = $regex
 
@@ -29,7 +31,21 @@ $regexObj.Matches($eventSub) | % {
     } -End { [PSCustomObject]$hash}
 }
 
+#endregion
 
-#capture event log message Use [regex]
+#region EventLog_Messages
+
+$eventlog = Get-EventLog -InstanceId 4720 -LogName Security | select -First 1
+
+$regex = '(?xns) #modifers
+          Subject:(.*)
+          Account\s+Name:\s+(?<DomainController>[a-z0-9]+)
+          (.*)New\s+Account:(.*)
+          Account\s+Name:\s+(?<AccountName>[a-z_]+)
+          (.*)Account\s+Domain:\s+
+          (?<Domain>[a-z]+)'
+
+$eventlog.Message -match $regex
+
 
 #endregion
