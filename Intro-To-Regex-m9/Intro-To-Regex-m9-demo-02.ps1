@@ -1,3 +1,20 @@
+#region Modifiers
+
+#single-line mode
+
+'dot
+matches all' -match '(?s).*'
+
+#ignore whitespaces
+
+'202-555-0148' -match '(?x) \d{3} - {\d3} - \d{4}  #comment'
+
+#Do not capture unnamed groups
+
+'abc 123' -match '(?n)(?<word>[a-z]+)\s+(\d+)'
+
+#endregion
+
 #region Windows_Event_Forwarding
 
 $regex = '(?xn) #modifers
@@ -24,22 +41,5 @@ $regexObj.Matches($eventSub) | % {
         $hash.add($_,$match.groups["$_"].value)
     } -End { [PSCustomObject]$hash}
 }
-
-#endregion
-
-#region EventLog_Messages
-
-$eventlog = Get-EventLog -InstanceId 4720 -LogName Security | select -First 1
-
-$regex = '(?xns) #modifers
-          Subject:(.*)
-          Account\s+Name:\s+(?<DomainController>[a-z0-9]+)
-          (.*)New\s+Account:(.*)
-          Account\s+Name:\s+(?<AccountName>[a-z_]+)
-          (.*)Account\s+Domain:\s+
-          (?<Domain>[a-z]+)'
-
-$eventlog.Message -match $regex
-
 
 #endregion
