@@ -1,9 +1,3 @@
-#region PhoneNumber
-
-'202-555-0148' -match '(?x) (?<AreaCode>\d{3}) - (?<PhoneNumber>\d{3}-\d{4})'
-
-#endregion
-
 #region Windows_Event_Forwarding
 
 $regex = '(?xn) #modifers
