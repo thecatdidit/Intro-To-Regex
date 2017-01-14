@@ -10,13 +10,17 @@ $share -match $regex
 
 #endregion
 
-#region Regex_Object
+#region Regex_Object_Match
 
 $string = 'abcd 1234 efg 567'
 
 [regex]$regex = '(?<word>[a-z]+) (?<num>[0-9]+)'
 
 $regex.Match($string)
+
+#endregion
+
+#region Regex_Object_Match
 
 $string = 'abcd 1234 efg 567'
 
