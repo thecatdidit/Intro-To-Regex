@@ -17,7 +17,7 @@ matches all' -match '(?s).*'
 
 #region Windows_Event_Forwarding
 
-$regex = '(?xn) #modifers
+$regex = '(?xn)
           (Address:\s)
           (?<ServerName>\w+) #1st named capture
           \.
