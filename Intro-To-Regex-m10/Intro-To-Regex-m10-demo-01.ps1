@@ -31,10 +31,17 @@ Enabled: true
 
 [regex]::Match('duf@fney','\w+(?<!@)').value
 
+[regex]::Match('donotmatch/matchme','(?<!donotmatch\/)matchme').value
+
+[regex]::Match('master\improvement-1.2.0','(?<!master\\)[a-z]+\-([0-9]\.?)+').value
+
+[regex]::Match('master\improvement-1.2.0','(?<!master\\)improvement\-1\.2\.0').value #has restrictions on lenght and no meatacharacters pg132
+
 [regex]::match('http://regex.info/listing.cgi?ed=3&p=all????',`
 "http://[a-z0-9]+(\.[a-z0-9]+)*\.(com|edu|info)/[-a-z0-9_:\@&?=+,.!/~*'%\$]*(?<![.,?!])").value
 
-
+[regex]::match('http://regex.info/listing.cgi?ed=3&p=all',`
+"http://[a-z0-9]+(\.[a-z0-9]+)*\.(com|edu|info)/[-a-z0-9_:\@&?=+,.!/~*'%\$]*(?<![.,?!])$").value
 
 #lookahead and lookbehind
 
