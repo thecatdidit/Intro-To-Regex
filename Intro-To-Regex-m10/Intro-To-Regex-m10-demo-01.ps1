@@ -31,7 +31,7 @@ Enabled: true
 
 [regex]::Match('develop\improvement-1.2.0','(?<!master\\)improvement\-1\.2\.0').value
 
-[regex]::Match('master\improvement-1.2.0','(?<!master\\)improvement\-1\.2\.0').value #has restrictions on lenght and no meatacharacters pg132
+[regex]::Match('master\improvement-1.2.0','(?<!master\\)improvement\-1\.2\.0').value
 
 #endregion
 
