@@ -27,14 +27,7 @@ named DSC. Follow the below steps to apply the DSC configuration to your server.
 4. On line 1 of the _IntroToRegex.psd1_ file add `$configdata =` right before `@{`
 5. Hit F5 to load the configdata into memory
 6. Open _IntroToRegex.ps1_ within the PowerShell ISE and hit F5 to load the DSC configuration into memory
-7. Within the command prompt within the PowerShell ISE type following command.
-
-
-`IntroToRegex -ConfigurationData $configdata -OutputPath C:\dsc\IntroToRegex`
-
+7. Within the command prompt within the PowerShell ISE type following command. `IntroToRegex -ConfigurationData $configdata -OutputPath C:\dsc\IntroToRegex`
 8. Once prompted enter the administrator password
 9. After the DSC configure runs you should have two .mof files at the location `C:\dsc\IntroToRegex`
-10. Issue the below command to apply the DSC configure to the server
-
-
-`Start-DscConfiguration -Wait -Force -Path C:\dsc\IntroToRegex -Verbose`
+10. Issue the below command to apply the DSC configure to the server `Start-DscConfiguration -Wait -Force -Path C:\dsc\IntroToRegex -Verbose`
