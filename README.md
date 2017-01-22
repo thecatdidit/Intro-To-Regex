@@ -31,18 +31,18 @@ a windows event forwarding subscritpion and some file shares. All of the configu
 named DSC. Follow the below steps to apply the DSC configuration to your server.
 
 
-1. Download the DSC configuration and configdata [IntroToRegex.ps1](https://github.com/Duffney/Intro-To-Regex/blob/master/DSC/IntroToRegex.ps1)  [IntroToRegex.psd1](https://github.com/Duffney/Intro-To-Regex/blob/master/DSC/IntroToRegex.psd1)
-2. Open up the PowerShell ISE on server you wish to configure
-3. Open _IntroToRegex.psd1_ within the PowerShell ISE
-4. On line 1 of the _IntroToRegex.psd1_ file add `$configdata =` right before `@{`
-5. Hit F5 to load the configdata into memory
-6. Open _IntroToRegex.ps1_ within the PowerShell ISE and hit F5 to load the DSC configuration into memory
-7. Within the command prompt within the PowerShell ISE type following command. 
+* Download the DSC configuration and configdata [IntroToRegex.ps1](https://github.com/Duffney/Intro-To-Regex/blob/master/DSC/IntroToRegex.ps1)  [IntroToRegex.psd1](https://github.com/Duffney/Intro-To-Regex/blob/master/DSC/IntroToRegex.psd1)
+* Open up the PowerShell ISE on server you wish to configure
+* Open _IntroToRegex.psd1_ within the PowerShell ISE
+* On line 1 of the _IntroToRegex.psd1_ file add `$configdata =` right before `@{`
+* Hit F5 to load the configdata into memory
+* Open _IntroToRegex.ps1_ within the PowerShell ISE and hit F5 to load the DSC configuration into memory
+* Within the command prompt within the PowerShell ISE type following command. 
 
 `IntroToRegex -ConfigurationData $configdata -OutputPath C:\dsc\IntroToRegex`
 
-8. Once prompted enter the administrator password
-9. After the DSC configure runs you should have two .mof files at the location `C:\dsc\IntroToRegex`
-10. Issue the below command to apply the DSC configure to the server 
+* Once prompted enter the administrator password
+* After the DSC configure runs you should have two .mof files at the location `C:\dsc\IntroToRegex`
+* Issue the below command to apply the DSC configure to the server 
 
 `Start-DscConfiguration -Wait -Force -Path C:\dsc\IntroToRegex -Verbose`
