@@ -34,6 +34,7 @@
         DSCResource = @(
           @{ Name = 'xActiveDirectory'; MinimumVersion = '2.13.0.0'; }
           @{ Name = 'xPSDesiredStateConfiguration'; MinimumVersion = '3.7.0.0'; }
+          @{ Name = 'xWindowsEventForwarding'; MinimumVersion = '1.0.0.0'; }
       )
 
     } # lability'

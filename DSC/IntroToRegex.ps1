@@ -3,7 +3,7 @@ Configuration IntroToRegex {
         [Parameter()] [ValidateNotNull()] [PSCredential] $Credential = (Get-Credential -Credential 'Administrator')        
     )
 
-    Import-DscResource -Module PSDesiredStateConfiguration, xActiveDirectory;
+    Import-DscResource -Module PSDesiredStateConfiguration, xActiveDirectory, xWindowsEventForwarding;
 
 node $AllNodes.Where({$true}).NodeName {
 
@@ -23,20 +23,6 @@ node $AllNodes.Where({$true}).NodeName {
             DestinationPath = 'C:\NTDS'            
             Type = 'Directory'            
             Ensure = 'Present'            
-        }
-
-        File Share {
-            DestinationPath = 'C:\Share'
-            Type = 'Directory'
-            Ensure = 'Present'
-        }
-
-        foreach ($folder in $Node.Folders) {
-            File $folder {
-                DestinationPath = "C:\Share\$folder"
-                Type = 'Directory'
-                Ensure = 'Present'
-            }
         }
                             
         WindowsFeature ADDSInstall             
@@ -77,6 +63,7 @@ node $AllNodes.Where({$true}).NodeName {
             Manager = (Get-ADUser -Filter {name -like '*Smith*'}).DistinguishedName
             Password = $Credential
             DependsOn = '[xADDomain]FirstDS';
+            OfficePhone = '402-583-5366'
         }
 
         xADUser BrandonBailey { 
@@ -87,6 +74,7 @@ node $AllNodes.Where({$true}).NodeName {
             GivenName = 'Bailey'
             Manager = (Get-ADUser -Filter {name -like '*Smith*'}).DistinguishedName
             Password = $Credential
+            OfficePhone =  '3956'
             DependsOn = '[xADDomain]FirstDS';
         }
 
@@ -98,6 +86,7 @@ node $AllNodes.Where({$true}).NodeName {
             GivenName = 'Bailey'
             Manager = (Get-ADUser -Filter {name -like '*Smith*'}).DistinguishedName
             Password = $Credential
+            OfficePhone = '1-760-410-9010'
             DependsOn = '[xADDomain]FirstDS';
         }
 
@@ -127,7 +116,20 @@ node $AllNodes.Where({$true}).NodeName {
             GroupName = 'SalesEngineers'
             Ensure = 'Present'
             Members = 'gbailey','bbailey' 
-        }        
+        }
+
+        xWEFCollector Enabled {
+            Ensure = 'Present'
+            Name = 'Enabled'
+        }
+
+        xWEFSubscription AppEvents {
+            SubscriptionID = 'AppEvents'
+            Ensure = 'Present'
+            SubscriptionType = 'CollectorInitiated'
+            Address = 'GDC01.globomantics.com'
+            DependsOn = '[xWEFCollector]Enabled'
+        }
 }
 
 
