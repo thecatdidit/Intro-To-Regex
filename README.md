@@ -7,10 +7,20 @@ Contains all course files for the Pluralsight course Introduction to Regular Exp
 
 
 1 Virtual Machine
+
+
 Operating System: Windows Server 2012R2|2016
+
+
 CPU: 1 Core
+
+
 RAM: 1 GB minimum Recommended 4GB
+
+
 Disk Space: 32GB
+
+
 PowerShell Version: 5.0+
 
 
